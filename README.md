@@ -58,7 +58,7 @@ The parameters below select PC sampling that shouldn't be too fast, otherwise yo
     ITMTPR 0xFFFFFFFF
     continue
 
-Now you should see some output if you do nc localhost 2332 to some file swo_data (port belongs to JLink GDB server and should pump out SWO data).
+Now you should see some output if you do `nc localhost 2332 > swo_file` (port belongs to JLink GDB server and should pump out SWO data).
 
 You can use pcsampl utility from these [ITM tools](https://github.com/japaric/itm-tools). Let's try to parse the file you dumped from the port 2332, firmware.elf is the firmware running on your board:
 

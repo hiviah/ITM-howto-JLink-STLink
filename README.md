@@ -15,6 +15,8 @@ Notice file `Support/gdbtrace.init`, this contains lot of magic macros, we'll us
 
 ## JLink/JTrace
 
+![JTrace](jtrace.jpg)
+
 Note for this you need original JLink/JTrace, the cheap chinese clones won't work. Power cycle JLink first, just to make sure.
 
 First run JLink GDB server in one terminal, e.g.:
@@ -112,6 +114,8 @@ Later I found out the code was expecting a 8 MHz oscillator on board and while t
 the prescaler dividers divided and weird SWO speed was one of the weird results.
 
 ## STLink
+
+![STLink](stlink.jpg)
 
 Success with STLink depends on STLink firmware version. Some work, some do not output SWO data, some randomly desync after you enable ITM trace.
 

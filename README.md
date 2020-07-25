@@ -1,10 +1,10 @@
 # ARM ITM trace PC sampling HOWTO for STLink and JLink/JTrace
 
-Magic incantations for GDB, openocd, JLink GDB server to enable ITM PC and exception sampling. ARM ITM trace is a feature of Cortex MCUs with CoreSight - it allows you to see what is going inside CPU and can act like profiler. Getting ITM to work with orbuculum. Text is in English so that it's googleable for lost souls wanting to turn it on and work around for some weird bugs. Target is STM32F4 family.
+This repository just contains magic incantations for GDB, openocd, JLink GDB server to enable ITM PC and exception sampling. ARM ITM trace is a feature of Cortex MCUs with CoreSight - it allows you to see what is going inside CPU and can act like profiler. Getting ITM to work with orbuculum.
 
 This was tested on 3 boards, with STM32F407 and STM32F427 MCUs. If you have crystal oscillator speed different from 8 MHz, it might not work correctly. SWO speed should depend only on CPU core clock, however experimentally I found out it kind of doesn't or there is something weird going on with clock config. There will be note about this later.
 
-First, clone orbuculum's devel branch, it contains some GDB macros for ITM settings and also orbtop:
+First, clone orbuculum's devel branch, it contains some GDB macros for ITM settings and also `orbtop`:
 
     git checkout https://github.com/orbcode/orbuculum
     cd orbuculum
@@ -70,7 +70,7 @@ If the data are correct, you should see some meaningful result like:
      3.63 sha256_Transform
      1.80 mp_obj_get_type
 
-You can also watch with orbtop which is part of orbuculum (look in `ofiles` directory). This will take data from JLink's SWO port 2332, show exceptions, max 15 lines. It's like top, it just shows time spent in functions instead:
+You can also watch with `orbtop` which is part of orbuculum (look in `ofiles` directory). This will take data from JLink's SWO port 2332, show exceptions, max 15 lines. It's like top, it just shows time spent in functions instead:
 
     ./orbtop -E -e firmware.elf -v3 -c 15 -s localhost:2332
 
@@ -142,14 +142,14 @@ Set baudrate to 2 Mbaud, look at screen if it spews data. It's actually importan
     screen /dev/ttyUSB0 2000000     # look if data is flowing, then kill screen
     stty -F /dev/ttyUSB0 2000000
 
-Now you can either dump data via cat from /dev/ttyUSB and decode with pcsampl or you can run orbuculum with orbtop (each in separate terminal).
+Now you can either dump data via cat from `/dev/ttyUSB` and decode with pcsampl or you can run orbuculum with `orbtop` (each in separate terminal).
 
 Both binaries below are in `ofiles` directory of orbuculum.
 
     ./orbuculum -p /dev/ttyUSB0 -a 2000000 -v2
     ./orbtop -E -e firmware.elf -v3 -p /dev/ttyUSB0 -a 2000000 -v2
 
-If succesful, you'll see the the orbtop output like above.
+If succesful, you'll see the the `orbtop` output like above.
 Final remarks
 Many roosters were sacrificed to make this work. You may experience different behavior if you are on unlucky FW version of JTAG/SWD adapters.
 

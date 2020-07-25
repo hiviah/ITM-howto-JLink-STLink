@@ -26,7 +26,7 @@ Note for this you need original JLink/JTrace, the cheap chinese clones won't wor
 
 First run JLink GDB server in one terminal, e.g.:
 
-JLinkGDBServerCLExe -select USB -device Cortex-M4 -endian little -if SWD -speed auto -ir -LocalhostOnly
+    JLinkGDBServerCLExe -select USB -device Cortex-M4 -endian little -if SWD -speed auto -ir -LocalhostOnly
 
 In GDB, connect to the server. This expects you have the `Support` dir from orbuculum in current directory. Magic incantations below. This is for CPU core clock of 168 MHz, look at the gdbtrace.init's comments to see what the arguments are. The monitor SWO EnableTargeT is part of JLink's GDB server, see JLink user guide.
 

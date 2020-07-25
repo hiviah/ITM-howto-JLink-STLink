@@ -2,3 +2,6 @@
 	path = orbuculum
 	url = https://github.com/orbcode/orbuculum
 	branch = Devel
+[submodule "itm-tools"]
+	path = itm-tools
+	url = https://github.com/japaric/itm-tools

@@ -1,6 +1,6 @@
 # ARM ITM trace PC sampling HOWTO for STLink and JLink/JTrace
 
-This repository just contains magic incantations for GDB, openocd, JLink GDB server to enable ITM PC and exception sampling. ARM ITM trace is a feature of Cortex MCUs with CoreSight - it allows you to see what is going inside CPU and can act like profiler. Getting ITM to work with orbuculum.
+This repository just contains magic incantations for GDB, openocd, JLink GDB server to enable ITM PC and exception sampling. ARM ITM trace is a feature of Cortex MCUs with CoreSight - it allows you to see what is going inside CPU and can act like profiler. Getting ITM to work with orbuculum. This should work for **STM32F4** family targets, you'll have to make adjustments for other MCUs.
 
 This was tested on 3 boards, with STM32F407 and STM32F427 MCUs. If you have crystal oscillator speed different from 8 MHz, it might not work correctly, check your clock initialization code. SWO speed should depend only on CPU core clock, however experimentally I found out it kind of doesn't or there is something weird going on with clock config. There will be note about this later.
 

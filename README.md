@@ -4,12 +4,17 @@ This repository just contains magic incantations for GDB, openocd, JLink GDB ser
 
 This was tested on 3 boards, with STM32F407 and STM32F427 MCUs. If you have crystal oscillator speed different from 8 MHz, it might not work correctly, check your clock initialization code. SWO speed should depend only on CPU core clock, however experimentally I found out it kind of doesn't or there is something weird going on with clock config. There will be note about this later.
 
-First, clone orbuculum's devel branch, it contains some GDB macros for ITM settings and also `orbtop`:
+First, initialize submodules, they contain `orbuculum` with some GDB macros for ITM settings and also `orbtop`:
 
-    git checkout https://github.com/orbcode/orbuculum
+    git submodule update -i
     cd orbuculum
     git checkout Devel
     make
+
+In toplevel dir build `itm-tools`, with `pcsampl` utility:
+ 
+    cd itm-tools
+    cargo build
 
 Notice file `Support/gdbtrace.init`, this contains lot of magic macros, we'll use it later.
 

@@ -1,0 +1,4 @@
+[submodule "orbuculum"]
+	path = orbuculum
+	url = https://github.com/orbcode/orbuculum
+	branch = Devel

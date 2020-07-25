@@ -1,0 +1,10 @@
+### Connect target and source scripts manually
+#target extended-remote :3333
+#source Support/gdbtrace.init
+
+monitor tpiu config internal swodump.log uart off 168000000 2000000
+monitor mmw 0xE0001000 69632 0
+monitor mmw 0xE0001000 103 510
+dwtPostReset 15
+set *0xe0001000=*0xe0001000 | 0x200
+

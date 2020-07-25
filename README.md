@@ -16,7 +16,7 @@ In toplevel dir build `itm-tools`, with `pcsampl` utility:
     cd itm-tools
     cargo build
 
-Notice file `Support/gdbtrace.init`, this contains lot of magic macros, we'll use it later.
+Notice file `Support/gdbtrace.init` in `orbuculum`, this contains lot of magic macros, we'll use it later.
 
 ## JLink/JTrace
 

@@ -2,7 +2,7 @@
 
 This repository just contains magic incantations for GDB, openocd, JLink GDB server to enable ITM PC and exception sampling. ARM ITM trace is a feature of Cortex MCUs with CoreSight - it allows you to see what is going inside CPU and can act like profiler. Getting ITM to work with orbuculum. This should work for **STM32F4** family targets, you'll have to make adjustments for other MCUs.
 
-This was tested on 3 boards, with STM32F407 and STM32F427 MCUs. If you have crystal oscillator speed different from 8 MHz, it might not work correctly, check your clock initialization code. SWO speed should depend only on CPU core clock, however experimentally I found out it kind of doesn't or there is something weird going on with clock config. There will be note about this later.
+This was tested on 3 boards, with STM32F407 and STM32F427 MCUs. Check your crystal oscillator speed (I made a mistake once not finding out one of the tested boards had different oscillator than all of the others, which was not apparent without close scrutiny).
 
 First, initialize submodules, they contain `orbuculum` with some GDB macros for ITM settings and also `orbtop` (requires gcc, build tools and development libraries, libftdi, libusb):
 
@@ -106,17 +106,6 @@ Sample output if all goes well:
     ----+----------+-------+-------------+------------+------------+------------
 
     [---H] Interval = 1018mS / 0 (~0 Ticks/mS)
-
-### Note on crystal oscillator speed different than 8 MHz
-
-For some reason shown later the above GDB incantations will make CPU output 3 Mbaud SWO data instead of 2 Mbaud if oscillator speed onboard is 12 MHz (case of one tested board).
-
-Just adjust the EnableTarget line to this, so that JLink expects 3 Mbaud data:
-
-    monitor SWO EnableTarget 168000000 3000000 0xFF 0
-
-Later I found out the code was expecting a 8 MHz oscillator on board and while the CPU ran at max speed (technically was set to "beyond max speed"), 
-the prescaler dividers divided and weird SWO speed was one of the weird results.
 
 ## STLink
 
